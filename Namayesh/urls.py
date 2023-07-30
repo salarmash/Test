@@ -7,5 +7,6 @@ urlpatterns = [
     path('login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh', TokenRefreshView.as_view(), name='token_refresh'),
     #     Other Views
-    path("list", views.ProductGetView.as_view())
+    path("list", views.ProductGetView.as_view()),
+    path("post", views.ProductPostView.as_view()),
 ]

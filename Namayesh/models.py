@@ -18,7 +18,7 @@ class Product(models.Model):
     price = models.CharField(max_length=50)
     quantity = models.CharField(max_length=50)
     publisher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name="products")
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

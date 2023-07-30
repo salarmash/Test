@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'Namayesh.apps.NamayeshConfig',
     'rest_framework_simplejwt',
 
-
 ]
 
 MIDDLEWARE = [
