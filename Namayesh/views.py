@@ -24,3 +24,14 @@ class ProductPostView(APIView):
             return Response({'Message': "Product Added"})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class ProductUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        instance = Product.objects.get(id=pk)
+        serializer = ProductSerializer(instance=instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"Message": "Product Updated"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors)

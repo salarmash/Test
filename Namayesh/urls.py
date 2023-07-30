@@ -9,4 +9,5 @@ urlpatterns = [
     #     Other Views
     path("list", views.ProductGetView.as_view()),
     path("post", views.ProductPostView.as_view()),
+    path("update/<int:pk>", views.ProductUpdateView.as_view()),
 ]
