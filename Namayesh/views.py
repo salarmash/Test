@@ -5,12 +5,15 @@ from rest_framework.permissions import IsAuthenticated
 from .permissions import PublisherOrReadOnly
 from .models import Product
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 
 
 class ProductGetView(APIView):
     def get(self, request):
         queryset = Product.objects.all()
-        serializer = ProductSerializer(queryset, many=True)
+        paginator = PageNumberPagination()
+        result = paginator.paginate_queryset(queryset=queryset, request=request)
+        serializer = ProductSerializer(result, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
