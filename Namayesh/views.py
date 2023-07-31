@@ -39,3 +39,12 @@ class ProductUpdateView(APIView):
             serializer.save()
             return Response({"Message": "Product Updated"}, status=status.HTTP_200_OK)
         return Response(serializer.errors)
+
+
+class ProductDeleteView(APIView):
+    permission_classes = [IsAuthenticated, PublisherOrReadOnly]
+
+    def delete(self, request, pk):
+        instance = Product.objects.get(id=pk)
+        instance.delete()
+        return Response({"Message": "Product Deleted!"})
